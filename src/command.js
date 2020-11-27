@@ -55,9 +55,9 @@ class Command {
             await fse.writeFile(controlPath, getController({ moduleName }))
             await fse.writeFile(servicePath, getService({ moduleName }))
           } catch (error) {
-            return this.ora.fail(`模块[ ${moduleName} ]生成失败,错误信息:[ ${error} ].`)
+            return ora.fail(`模块[ ${moduleName} ]生成失败,错误信息:[ ${error} ].`)
           }
-          this.ora.succeed(`模块[ ${moduleName} ]生成完毕!`)
+          ora.succeed(`模块[ ${moduleName} ]生成完毕!`)
         }
       })
   }
