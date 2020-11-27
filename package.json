@@ -9,7 +9,7 @@
     "@types/node": "14.14.10",
     "colors": "1.4.0",
     "commander": "6.2.0",
-    "fs-extra": "^9.0.1",
+    "fs-extra": "9.0.1",
     "ora": "5.1.0"
   }
 }
