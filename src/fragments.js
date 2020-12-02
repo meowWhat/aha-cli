@@ -5,7 +5,7 @@ const parser = require('./template')
  */
 const getModule = (slots) => {
   return parser.parse(
-    `import { $moduleName$ } from '@nestjs/common'
+    `import { Module } from '@nestjs/common'
 import { $moduleName$Controller } from './$moduleName$.controller'
 import { $moduleName$Service } from './$moduleName$.service'
 
@@ -46,11 +46,11 @@ const getService = (slots) => {
   
 @Injectable()
 export class $moduleName$Service {
-  private readonly cats: Cat[] = []
-  create(cat: Cat) {
+  private readonly cats = []
+  create(cat) {
     this.cats.push(cat)
   }
-  findAll(): Cat[] {
+  findAll() {
     return this.cats
   }
 }`,
