@@ -25,7 +25,7 @@ class Command {
       .alias('c')
       .description('生成模块,包含 module,control,provider')
       .action(async (module) => {
-        const ora = new Ora(`正在生成模块[ ${module} ]...`.grey)
+        const ora = new Ora(`正在生成模块[ ${module} ]...\r`.yellow)
         // 模块名(大驼峰)
         const moduleName = toPascal(module)
         // 模块路径  如 /src/modules/Test
@@ -52,12 +52,15 @@ class Command {
           // 写文件
           try {
             await fse.writeFile(modulePath, getModule({ moduleName }))
-            await fse.writeFile(controlPath, getController({ moduleName }))
+            console.log(`文件 [ ${modulePath} ]生成完毕 ~`.gray)
+            await fse.writeFile(controlPath, getController({ moduleName, route: module }))
+            console.log(`文件 [ ${controlPath} ]生成完毕 ~`.gray)
             await fse.writeFile(servicePath, getService({ moduleName }))
+            console.log(`文件 [ ${servicePath} ]生成完毕 ~`.gray)
           } catch (error) {
             return ora.fail(`模块[ ${moduleName} ]生成失败,错误信息:[ ${error} ].`)
           }
-          ora.succeed(`模块[ ${moduleName} ]生成完毕!`)
+          ora.succeed(`模块[ ${moduleName} ]生成完毕! 存放于[ ${dirPath} ]`)
         }
       })
   }
